@@ -13,8 +13,12 @@ const app = new Hono();
 app.use(
 	"/*",
 	cors({
-		origin: ["http://localhost:5173", "http://localhost:5174"],
-		allowMethods: ["GET", "POST"],
+		origin: [
+			"http://localhost:5173",
+			"http://localhost:5174",
+			"https://groundwater-xi.vercel.app",
+		],
+		allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 		credentials: true,
 	}),
 );
