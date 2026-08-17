@@ -1,7 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import type { ForecastRow, HistoricalRow, Station } from "shared";
 
-const API_BASE = "/api";
+const API_BASE = import.meta.env.PROD 
+  ? "https://jal-dristhi-backend.onrender.com" 
+  : "/api";
 
 async function fetchJson<T>(url: string): Promise<T> {
 	const res = await fetch(url);
