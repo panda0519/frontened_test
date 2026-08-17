@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: aquasentinel-backend
+    env: node
+    buildCommand: "cd backend && bun install && bun run build"
+    startCommand: "cd backend && node dist/index.js"
+    envVars:
+      - key: NODE_ENV
+        value: production
