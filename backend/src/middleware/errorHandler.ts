@@ -1,4 +1,5 @@
-import type { Hono, StatusCode } from "hono";
+import type { Hono } from "hono";
+import type { StatusCode } from "hono/utils/http-status";
 import { ApiErrorEnvelopeSchema } from "shared";
 
 export function setupErrorHandler(app: Hono) {
@@ -26,6 +27,6 @@ export function setupErrorHandler(app: Hono) {
 		};
 
 		const validated = ApiErrorEnvelopeSchema.parse(errorResponse);
-		return c.json(validated, status as unknown as StatusCode);
+		return c.json(validated, status as any);
 	});
 }
