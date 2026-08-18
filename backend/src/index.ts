@@ -13,11 +13,15 @@ const app = new Hono();
 app.use(
 	"/*",
 	cors({
-		origin: [
-			"http://localhost:5173",
-			"http://localhost:5174",
-			"https://groundwater-xi.vercel.app",
-		],
+		origin: (origin) => {
+			const allowedOrigins = [
+				"http://localhost:5173",
+				"http://localhost:5174",
+				"https://groundwater-xi.vercel.app",
+			];
+			// Return the origin if allowed, otherwise return null (blocks request)
+			return allowedOrigins.includes(origin) ? origin : null;
+		},
 		allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
 		credentials: true,
 	}),
